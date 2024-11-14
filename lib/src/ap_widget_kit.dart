@@ -1,3 +1,4 @@
+import 'package:ap_widget_kit/src/enum/enum.dart';
 import 'package:ap_widget_kit/src/general/general.dart';
 import 'package:flutter/material.dart';
 
@@ -57,6 +58,30 @@ class ApWidgetKit {
       inactiveColor: inactiveColor,
       isDisabled: isDisabled,
       inactiveDisabledColor: inactiveDisabledColor,
+    );
+  }
+
+  /// Build GeneralButton
+  static Widget generalButton({
+    required String buttonLabel,
+    required void Function() onPressed,
+    Color fillColor = Colors.blueGrey,
+    Color altFillColor = Colors.grey,
+    ButtonType type = ButtonType.primary,
+    ButtonVariant variant = ButtonVariant.main,
+    TextStyle? textStyle,
+    bool isDisabled = false,
+    Widget? icon,
+  }) {
+    return GeneralButton(
+      type: type,
+      variant: variant,
+      buttonLabel: buttonLabel,
+      onPressed: onPressed,
+      fillColor: fillColor,
+      altFillColor: altFillColor,
+      textStyle: textStyle,
+      icon: icon,
     );
   }
 }
