@@ -8,6 +8,7 @@ class GeneralSwitch extends StatelessWidget {
     required this.onChanged,
     this.activeColor,
     this.inactiveColor,
+    this.isDisabled = false,
     super.key,
   });
 
@@ -24,13 +25,16 @@ class GeneralSwitch extends StatelessWidget {
   /// The [inactiveColor] parameter is the color of the switch when it is off.
   final Color? inactiveColor;
 
+  /// The [isDisabled] parameter is the state of the switch.
+  final bool isDisabled;
+
   @override
   Widget build(BuildContext context) {
-    return Switch(
+    return CupertinoSwitch(
       value: value,
-      onChanged: onChanged,
-      activeColor: activeColor,
-      inactiveTrackColor: inactiveColor,
+      onChanged: isDisabled ? null : onChanged,
+      activeColor: isDisabled ? activeColor?.withOpacity(0.25) : activeColor,
+      trackColor: isDisabled ? inactiveColor?.withOpacity(0.25) : inactiveColor,
     );
   }
 }

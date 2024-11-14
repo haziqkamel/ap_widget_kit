@@ -30,12 +30,33 @@ class ApWidgetKit {
     required ValueChanged<bool> onChanged,
     Color? activeColor,
     Color? inactiveColor,
+    bool isDisabled = false,
   }) {
     return GeneralSwitch(
       value: value,
       onChanged: onChanged,
       activeColor: activeColor,
       inactiveColor: inactiveColor,
+      isDisabled: isDisabled,
+    );
+  }
+
+  /// Build GeneralCheckbox
+  static Widget generalCheckbox({
+    required bool value,
+    required ValueChanged<bool?> onChanged,
+    Color activeColor = const Color(0xFF007AFF),
+    Color inactiveColor = const Color(0xFFE6E6E6),
+    bool isDisabled = false,
+    Color inactiveDisabledColor = const Color(0xFFF0F0F0),
+  }) {
+    return GeneralCheckbox(
+      value: value,
+      onChanged: onChanged,
+      activeColor: activeColor,
+      inactiveColor: inactiveColor,
+      isDisabled: isDisabled,
+      inactiveDisabledColor: inactiveDisabledColor,
     );
   }
 }
