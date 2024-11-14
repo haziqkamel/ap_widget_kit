@@ -18,12 +18,11 @@ class GeneralButton extends StatelessWidget {
     required this.type,
     required this.variant,
     required this.buttonLabel,
-    required this.onPressed,
     required this.fillColor,
     required this.altFillColor,
+    this.onPressed,
     super.key,
     this.textStyle,
-    this.isDisabled = false,
     this.buttonWidth,
     this.icon,
   });
@@ -41,16 +40,13 @@ class GeneralButton extends StatelessWidget {
   final TextStyle? textStyle;
 
   /// The function to be called when the button is pressed.
-  final void Function() onPressed;
+  final void Function()? onPressed;
 
   /// The color of the button.
   final Color fillColor;
 
   /// The alternative color of the button.
   final Color altFillColor;
-
-  /// Whether the button is disabled.
-  final bool isDisabled;
 
   /// The width of the button.
   final double? buttonWidth;
@@ -60,15 +56,21 @@ class GeneralButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = onPressed == null;
+
     final buttonStyle = switch (type) {
       ButtonType.primary => ElevatedButton.styleFrom(
           backgroundColor: fillColor,
+          disabledBackgroundColor: fillColor.withOpacity(0.5),
         ),
       ButtonType.secondary => ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
+          disabledBackgroundColor: Colors.white.withOpacity(0.25),
+          disabledForegroundColor: Colors.white.withOpacity(0.25),
         ),
       ButtonType.alt => ElevatedButton.styleFrom(
           backgroundColor: altFillColor,
+          disabledForegroundColor: altFillColor.withOpacity(0.5),
         ),
     };
 
@@ -76,7 +78,15 @@ class GeneralButton extends StatelessWidget {
         TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: type == ButtonType.secondary ? fillColor : Colors.white,
+          color: type == ButtonType.secondary
+              ? fillColor.withOpacity(
+                  isDisabled ? 0.25 : 1,
+                )
+              : (isDisabled && type == ButtonType.primary)
+                  ? Colors.white
+                  : isDisabled
+                      ? Colors.grey.withOpacity(0.5)
+                      : Colors.white,
         );
 
     final buttonPadding = switch (variant) {
@@ -134,7 +144,9 @@ class GeneralButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             side: type == ButtonType.secondary
                 ? BorderSide(
-                    color: fillColor,
+                    color: fillColor.withOpacity(
+                      isDisabled ? 0.25 : 1,
+                    ),
                   )
                 : BorderSide.none,
           ),

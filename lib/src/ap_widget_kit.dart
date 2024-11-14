@@ -64,13 +64,12 @@ class ApWidgetKit {
   /// Build GeneralButton
   static Widget generalButton({
     required String buttonLabel,
-    required void Function() onPressed,
+    void Function()? onPressed,
     Color fillColor = Colors.blueGrey,
     Color altFillColor = Colors.grey,
     ButtonType type = ButtonType.primary,
     ButtonVariant variant = ButtonVariant.main,
     TextStyle? textStyle,
-    bool isDisabled = false,
     Widget? icon,
   }) {
     return GeneralButton(
