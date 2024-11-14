@@ -1,6 +1,8 @@
 import 'package:ap_widget_kit/src/enum/enum.dart';
 import 'package:ap_widget_kit/src/general/general.dart';
+import 'package:ap_widget_kit/src/input/input.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 /// {@template ap_widget_kit}
 /// Alphapod Widget Kit
@@ -81,6 +83,51 @@ class ApWidgetKit {
       altFillColor: altFillColor,
       textStyle: textStyle,
       icon: icon,
+    );
+  }
+
+  /// Build CustomInput
+  static Widget customInput({
+    TextEditingController? controller,
+    TextInputType keyboardType = TextInputType.text,
+    bool isDisabled = false,
+    bool isRequired = false,
+    bool isSecure = false,
+    bool isInputArea = false,
+    bool withCounter = false,
+    String? placeholder,
+    String? label,
+    String? initialValue,
+    String? errorMessage,
+    String? counterValue,
+    String? counterText,
+    TextStyle? errorMessageTextStyle,
+    List<TextInputFormatter>? formatter,
+    FocusNode? focusNode,
+    EdgeInsets? contentPadding,
+    String? Function(String?)? validator,
+    void Function(String)? onChanged,
+  }) {
+    return CustomInput(
+      controller: controller,
+      keyboardType: keyboardType,
+      isDisabled: isDisabled,
+      isRequired: isRequired,
+      isInputArea: isInputArea,
+      withCounter: withCounter,
+      validator: validator,
+      onChanged: onChanged,
+      placeholder: placeholder,
+      secureText: isSecure,
+      errorMessage: errorMessage,
+      errorMessageTextStyle: errorMessageTextStyle,
+      label: label,
+      initialValue: initialValue,
+      counterValue: counterValue,
+      counterText: counterText,
+      formatter: formatter,
+      node: focusNode,
+      contentPadding: contentPadding,
     );
   }
 }
